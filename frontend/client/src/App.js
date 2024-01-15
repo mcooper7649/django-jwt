@@ -1,26 +1,30 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { checkAuth } from 'features/user';
 
-import Home from "containers/Home";
-import Dashboard from "containers/Dashboard";
-import Login from "containers/Login";
-import Register from "containers/Register";
-
-import { store } from "store";
+import HomePage from 'containers/HomePage';
+import DashboardPage from 'containers/DashboardPage';
+import LoginPage from 'containers/LoginPage';
+import RegisterPage from 'containers/RegisterPage';
 
 const App = () => {
-  return (
-    <Provider store={store}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </Router>
-    </Provider>
-  );
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(checkAuth());
+	}, []);
+
+	return (
+		<Router>
+			<Routes>
+				<Route path='/' element={<HomePage />} />
+				<Route path='/dashboard' element={<DashboardPage />} />
+				<Route path='/login' element={<LoginPage />} />
+				<Route path='/register' element={<RegisterPage />} />
+			</Routes>
+		</Router>
+	);
 };
 
 export default App;
