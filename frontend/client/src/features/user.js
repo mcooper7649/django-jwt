@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { API_URL } from "config";
 
 export const register = createAsyncThunk(
   "users/register",
@@ -11,7 +12,7 @@ export const register = createAsyncThunk(
     });
 
     try {
-      const res = await fetch("/api/users/register", {
+      const res = await fetch(`${API_URL}/api/users/register`, {
         method: "POST",
         headers: {
           Accept: "application/json",

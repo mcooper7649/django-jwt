@@ -2,8 +2,9 @@ import Layout from "components/Layout";
 
 const Home = () => {
   return (
-    <Layout title="Auth Site | Home" content="Home Page">
-      <h1>Home Page</h1>
+    <Layout title="Auth Site | Home" content="Home page">
+      <h1 className="mb-5">Auth Site</h1>
+      <p>Welcome to Auth Site!</p>
     </Layout>
   );
 };
